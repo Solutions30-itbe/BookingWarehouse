@@ -56,7 +56,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Aménagement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/_i2walzlCUiSOcC5Ns06og2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 1
   },
   {
@@ -83,7 +83,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Contrôle annuel outillage & EPI (VCA)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/ihuj-VDJ8kCurzbCEm0-Ig2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 4
   },
   {
@@ -101,7 +101,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Contrôle outils stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/4Zp8BwMnE0qWVj3Omu34Ow2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 6
   },
   {
@@ -128,7 +128,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Gestion BOM techniciens",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/91oXL-31UkeR2ihkowFL-Q2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 9
   },
   {
@@ -137,7 +137,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Gestion administrative",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/QHcp71jDuEuvhcwVeHFd8w2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 10
   },
   {
@@ -146,7 +146,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Gestion stock matériels / consommables",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/U6gmuQ6p0U2KrV4hplsGGg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 11
   },
   {
@@ -155,7 +155,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Gestion stock outils",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/xLCKD9OvSE-nM8SMF49qGw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 12
   },
   {
@@ -164,7 +164,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Inventaire",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/PtNn4pkCMUKdSVXpuhvRuw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 13
   },
   {
@@ -173,7 +173,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Préparation de commande",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/irlcVWTfb0m8MyOY0zfidw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 14
   },
   {
@@ -182,7 +182,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Rangement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/-mgt9hKJh0yjPBCMHEpsoA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 15
   },
   {
@@ -200,7 +200,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS OST",
     "Tache": "Réintégration matériel BOM STOP",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/jDeNBtyuH0aZcj0C1JzaVw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 17
   },
   {
@@ -209,7 +209,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Aménagement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/VIV4R0LEe0OYxRtHDk39eQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 18
   },
   {
@@ -236,7 +236,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Commande & réception matériel LSP",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/ZAPdg6CixkSLnOEnFnybyw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 21
   },
   {
@@ -245,7 +245,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Contrôle annuel outillage & EPI (VCA)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/JxKv6qQGaUuSMaFfgxu8Hg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 22
   },
   {
@@ -263,7 +263,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Contrôle outils stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/Qi6qSiJuIUK3yP-4puTR_g2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 24
   },
   {
@@ -290,7 +290,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Gestion & rangement signalisation",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/R4w1xt-wAk69JKGjKx4fOw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 27
   },
   {
@@ -299,7 +299,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Gestion BOM techniciens",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/MJc_9Uqg7k63pNMNi-dGTw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 28
   },
   {
@@ -308,7 +308,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Gestion administrative",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/LJypEERVbU62llcdRRB0cw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 29
   },
   {
@@ -317,7 +317,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Gestion stock matériels / consommables",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/jw6g-8Ql0EmV9-D-rppOJg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 30
   },
   {
@@ -326,7 +326,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Gestion stock outils",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/oO7wLs_GWUSsceMWwUSPhw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 31
   },
   {
@@ -335,7 +335,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Inventaire",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/OaQAPoHbaEmR80vwFUIGJw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 32
   },
   {
@@ -344,7 +344,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Picking",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/akshwZ1hh0OwyWPZxvbrmg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 33
   },
   {
@@ -353,7 +353,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Préparation de commande",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/S1PZhiVLEUKdmQk3IYn92w2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 34
   },
   {
@@ -362,7 +362,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Ramassage signalisation chantier",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/jxIfayI8kEK0TqxhlI8NcA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 35
   },
   {
@@ -371,7 +371,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Rangement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/1OoGztZMTE6dsbwdnj84Mw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 36
   },
   {
@@ -380,7 +380,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Récupération matériel Proximus Flawinne",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/GWINOWJpukK_htJDvcuZBQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 37
   },
   {
@@ -398,7 +398,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Réintégration matériel BOM STOP",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/UbuAtUgtIU6dO_-0rIkJxA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 39
   },
   {
@@ -407,7 +407,7 @@ window.SERVICES = [
     "Projet": "PROXIMUS ACN",
     "Tache": "Visite LSP Proximus (S30 Seneffe)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/6r5ji65__0aiS_etI2H4aA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 40
   },
   {
@@ -416,7 +416,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Aménagement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/n_QB672JpEm6n5XVZOSUQA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 41
   },
   {
@@ -443,7 +443,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Contrôle annuel outillage & EPI (VCA)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/8T5D8DATL0SClfTlaLyPgw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 44
   },
   {
@@ -461,7 +461,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Contrôle outils stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/E-VuKUCbg0-Xmf5IMU7BKg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 46
   },
   {
@@ -488,7 +488,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Gestion administrative",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/oLePpous7kKuF1QhtO2ZzQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 49
   },
   {
@@ -497,7 +497,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Gestion stock matériels / consommables",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/6o7aTgvoqk-cfgx_CC76NQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 50
   },
   {
@@ -506,7 +506,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Gestion stock outils",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/llz7zf6jukKrGIzQk-VWGA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 51
   },
   {
@@ -515,7 +515,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Inventaire",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/tOP51k1kqE-NtHyjmiPzMw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 52
   },
   {
@@ -524,7 +524,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Préparation de commande",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/jiI_V3MRfEi1oGiwJea1wQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 53
   },
   {
@@ -533,7 +533,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Rangement & inventaire vêtements",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/W6T7q4-WUUqQrRxF52TeFw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 54
   },
   {
@@ -542,7 +542,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Rangement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/9GWvH9LIBEyBifYePabqfw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 55
   },
   {
@@ -551,7 +551,7 @@ window.SERVICES = [
     "Projet": "ORANGE",
     "Tache": "Réception matériel",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/AdgCRA-yZUKbp8wBZLizEQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 56
   },
   {
@@ -569,7 +569,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Aménagement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/HRWMRF5NrUKH9bWo35okUg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 58
   },
   {
@@ -578,7 +578,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Check EPI technicien",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/xlEFZflShUiyavDI8XJSYg2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 59
   },
   {
@@ -587,7 +587,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Check démarrage technicien",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/0llao_9O4Uurk7c38UshxQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 60
   },
   {
@@ -596,7 +596,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Contrôle annuel outillage & EPI (VCA)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/0MOhDnuXn0ugNlUQYjgIfw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 61
   },
   {
@@ -605,7 +605,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Contrôle outils stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/-5SjdNkvm0CrxPdbjlSz6w2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 62
   },
   {
@@ -623,7 +623,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Gestion administrative",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/SdutN_86dUK0AFXrR3iAYw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 64
   },
   {
@@ -632,7 +632,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Gestion stock matériels / consommables",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/PFrzvoz_Uk6GvMQFpXneDw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 65
   },
   {
@@ -641,7 +641,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Gestion stock outils",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/n3QU6H01lEekVPmxbqifRQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 66
   },
   {
@@ -650,7 +650,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Inventaire",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/CP8veQnmLkaUuWu3nSOCVA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 67
   },
   {
@@ -659,7 +659,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Livraison & réception",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/zVmvGilpe0i78wF7BM8qtw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 68
   },
   {
@@ -668,7 +668,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Préparation de commande",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/FoC32RC_9U6g98XAfcT3UQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 69
   },
   {
@@ -677,7 +677,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Rangement du stock",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/Dwq2zMZz0ku5abXteS7nIw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 70
   },
   {
@@ -686,7 +686,7 @@ window.SERVICES = [
     "Projet": "UNIFIBER",
     "Tache": "Récupération matériel technicien STOP",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/1FiVIhZOH0mc_WjXzqe43Q2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 71
   },
   {
@@ -704,7 +704,7 @@ window.SERVICES = [
     "Projet": "FLEET",
     "Tache": "Check-in véhicule (réception)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/MbnKOePP_kORq0nc7B5SRw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 73
   },
   {
@@ -713,7 +713,7 @@ window.SERVICES = [
     "Projet": "FLEET",
     "Tache": "Check-out véhicule (livraison)",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/1jcUkYHJwU6SWH0fKDyFUA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 74
   },
   {
@@ -722,7 +722,7 @@ window.SERVICES = [
     "Projet": "FLEET",
     "Tache": "Contrôle technique véhicules S30",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/G01yesXr20G9Gz7JutV-bw2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 75
   },
   {
@@ -740,7 +740,7 @@ window.SERVICES = [
     "Projet": "FLEET",
     "Tache": "Garage - carrosserie, entretien & réparation",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/tv0e8wpC20W7K8fOxfTMLA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 77
   },
   {
@@ -749,8 +749,17 @@ window.SERVICES = [
     "Projet": "FLEET",
     "Tache": "Préparation véhicule",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/_ESyDlki0EuWjHmSONRR6w2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 78
+  },
+  {
+    "Titre": "05 FLEET Gestion flotte",
+    "CodeProjet": 5,
+    "Projet": "FLEET",
+    "Tache": "Gestion de la flotte",
+    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/aqQERs-CbEySQ1tJoFVbww2?ismsaljsauthenabled",
+    "Public": "Non",
+    "Ordre": 91
   },
   {
     "Titre": "06 WAREHOUSE - Formation interne & externe",
@@ -758,7 +767,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Formation interne & externe",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/L4EvKQtxEk610V4KCPg-yA2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 79
   },
   {
@@ -767,7 +776,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Livraison & réception Houthalen",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/roEQs0_w2UOU2kljxpB_DQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 80
   },
   {
@@ -776,7 +785,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Nettoyage bureaux & cuisine",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/vv5517lElkCfzUY28WSl3A2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 81
   },
   {
@@ -785,7 +794,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Réunion / évaluation",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/7qZhmzyV9EWcx4H8YsKb1g2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 82
   },
   {
@@ -794,7 +803,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Sortie conteneurs Renewi",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/S8Xy11qdWEOAV4QRHo94hQ2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 83
   },
   {
@@ -803,7 +812,7 @@ window.SERVICES = [
     "Projet": "WAREHOUSE",
     "Tache": "Transfert matériel entre dépôts",
     "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/4GCbRmzrrEqEXX26SlDD1g2?ismsaljsauthenabled",
-    "Public": "Oui",
+    "Public": "Non",
     "Ordre": 84
   },
   {
