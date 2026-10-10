@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réservation dépôt Seneffe</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<!-- ===================== CONFIGURATION — à adapter (voir README.md) ===================== -->
+<script>
+window.CONFIG = {
+  // Laisser vide ("") pour utiliser les données du fichier services.js.
+  // Pour lire la liste SharePoint en direct : coller ici l'URL du flux Power Automate
+  // (déclencheur « Lors de la réception d'une requête HTTP », méthode GET).
+  dataUrl: "",
+  // Ouvrir Bookings dans un nouvel onglet (true) ou dans le même onglet (false)
+  nouvelOnglet: true,
+  // Nom affiché en haut de la page
+  titre: "Réservation dépôt Seneffe"
+};
+</script>
+<script src="services.js"></script>
+<style>
+:root{
+  --bg:#f4f3ef; --surface:#ffffff; --ink:#1b1d21; --muted:#5d636e; --line:#dcd9d1;
+  --accent:#d9541e; --accent-ink:#ffffff; --focus:#1f5fbf; --ok:#2f7a4a; --warn-bg:#fff4dc; --warn-ink:#7a4b00;
+  --radius:12px; --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+  --p1:#6b4fbb; --p2:#3f51b5; --p3:#e2711d; --p4:#0f8b8d; --p5:#2f7a4a; --p6:#6d6a62; --p8:#8a5a44; --p9:#5f7c99; --p10:#b23a48;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171a; --surface:#1f2226; --ink:#eceae5; --muted:#a2a7b0; --line:#33373d;
+    --accent:#f0743f; --accent-ink:#15171a; --focus:#7fb0ff; --warn-bg:#3a2f16; --warn-ink:#f3d28a;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+    --p1:#9f86ea; --p2:#7f8fe6; --p3:#f39a54; --p4:#3cc0c2; --p5:#5fb37f; --p6:#a8a49a; --p8:#c4927a; --p9:#93add0; --p10:#e2707d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171a; --surface:#1f2226; --ink:#eceae5; --muted:#a2a7b0; --line:#33373d;
+  --accent:#f0743f; --accent-ink:#15171a; --focus:#7fb0ff; --warn-bg:#3a2f16; --warn-ink:#f3d28a;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  --p1:#9f86ea; --p2:#7f8fe6; --p3:#f39a54; --p4:#3cc0c2; --p5:#5fb37f; --p6:#a8a49a; --p8:#c4927a; --p9:#93add0; --p10:#e2707d;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:120px}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+header .wrap{display:flex;align-items:center;gap:12px;min-height:64px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.logo{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
+.logo svg{width:20px;height:20px}
+h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
+.badge-planif{margin-left:auto;font:600 12px/1 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;padding:7px 10px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent)}
+.intro{padding:28px 0 8px}
+.intro p{margin:0;color:var(--muted);max-width:60ch}
+.intro strong{color:var(--ink)}
+.step{margin-top:28px}
+.step-h{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+.step-n{font:600 13px/1 "IBM Plex Mono",monospace;color:var(--accent)}
+.step-h h2{font-size:17px;margin:0;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.proj{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:14px 14px 13px;display:flex;flex-direction:column;gap:6px;min-height:92px;box-shadow:var(--shadow);position:relative;transition:border-color .15s, transform .15s}
+.proj:hover{border-color:var(--pc)}
+.proj:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.proj[aria-pressed="true"]{border-color:var(--pc);box-shadow:inset 0 0 0 1.5px var(--pc),var(--shadow)}
+.proj .code{font:600 13px/1 "IBM Plex Mono",monospace;color:var(--pc);display:flex;align-items:center;gap:8px}
+.proj .code::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--pc)}
+.proj .name{font-weight:600;font-size:16px;line-height:1.25}
+.proj .count{font-size:13px;color:var(--muted);margin-top:auto}
+.proj .tag{position:absolute;top:12px;right:12px;font:600 10px/1 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 6px}
+.search{display:flex;gap:8px;margin-bottom:10px}
+.search input{flex:1;min-width:0;font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.search input:focus{outline:3px solid var(--focus);outline-offset:1px}
+.list{display:flex;flex-direction:column;gap:6px}
+.svc{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;min-height:52px}
+.svc:hover{border-color:var(--pc)}
+.svc:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.svc .radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center}
+.svc[aria-checked="true"]{border-color:var(--pc);box-shadow:inset 0 0 0 1px var(--pc)}
+.svc[aria-checked="true"] .radio{border-color:var(--pc)}
+.svc[aria-checked="true"] .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.svc .t{flex:1;min-width:0}
+.svc .p{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--pc);white-space:nowrap}
+.empty{padding:18px;border:1.5px dashed var(--line);border-radius:10px;color:var(--muted);text-align:center}
+.notice{margin-top:16px;padding:12px 14px;border-radius:10px;background:var(--warn-bg);color:var(--warn-ink);font-size:14px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06);transform:translateY(110%);transition:transform .2s ease}
+.bar.show{transform:none}
+.bar .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.bar .sel{flex:1;min-width:0}
+.bar .sel small{display:block;font:500 12px/1.2 "IBM Plex Mono",monospace;color:var(--muted)}
+.bar .sel span{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go{all:unset;box-sizing:border-box;cursor:pointer;background:var(--accent);color:var(--accent-ink);font-weight:600;padding:13px 18px;border-radius:10px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.go:hover{filter:brightness(1.05)}
+.go:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.go svg{width:18px;height:18px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+.status{color:var(--muted);padding:24px 0}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr 1fr}
+  .proj{min-height:84px;padding:12px}
+  .proj .name{font-size:15px}
+  .bar .wrap{flex-direction:column;align-items:stretch;gap:10px}
+  .go{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-ink)"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></div>
+    <h1 id="titre">Réservation dépôt</h1>
+    <span class="badge-planif" id="badgePlanif" hidden>Mode planificateur</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p>Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong></p>
+  </section>
+
+  <div id="status" class="status" role="status">Chargement des services…</div>
+
+  <section class="step" id="step1" hidden>
+    <div class="step-h"><span class="step-n">01</span><h2>Projet</h2></div>
+    <div class="grid" id="projets" role="group" aria-label="Projets"></div>
+  </section>
+
+  <section class="step" id="step2" hidden>
+    <div class="step-h"><span class="step-n">02</span><h2 id="step2title">Tâche</h2></div>
+    <div class="search"><input id="q" type="search" placeholder="Filtrer les tâches…" aria-label="Filtrer les tâches" autocomplete="off"></div>
+    <div class="list" id="services" role="radiogroup" aria-labelledby="step2title"></div>
+  </section>
+
+  <footer class="wrap" style="padding:0">
+    <p id="foot"></p>
+  </footer>
+</main>
+
+<div class="bar" id="bar" aria-live="polite">
+  <div class="wrap">
+    <div class="sel"><small id="selProj"></small><span id="selTache"></span></div>
+    <button class="go" id="go" type="button">Réserver dans Bookings
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const CFG = window.CONFIG || {};
+  const params = new URLSearchParams(location.search);
+  const planif = ["planificateur","planif"].includes((params.get("mode")||"").toLowerCase());
+  const cle = params.get("cle") || "";
+  const $ = id => document.getElementById(id);
+  const state = { projets:[], services:[], projet:null, service:null };
+
+  document.title = CFG.titre || document.title;
+  $("titre").textContent = CFG.titre || "Réservation dépôt";
+  if (planif) $("badgePlanif").hidden = false;
+
+  const pad = n => String(n).padStart(2,"0");
+  const color = c => `var(--p${c}, var(--p6))`;
+  const isPublic = s => String(s.Public).trim().toLowerCase().startsWith("o") || s.Public === true || String(s.Public).toLowerCase()==="yes" || String(s.Public).toLowerCase()==="true";
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+
+  function normalise(rows){
+    // Accepte un tableau, ou {value:[...]} (réponse SharePoint brute)
+    const arr = Array.isArray(rows) ? rows : (rows && rows.value) || [];
+    return arr.map(r => ({
+      Titre: r.Titre ?? r.Title ?? "",
+      CodeProjet: Number(r.CodeProjet),
+      Projet: r.Projet ?? "",
+      Tache: r.Tache ?? r["Tâche"] ?? "",
+      Lien: (r.Lien && r.Lien.Url) ? r.Lien.Url : (r.Lien ?? ""),
+      Public: r.Public,
+      Ordre: Number(r.Ordre ?? 0)
+    })).filter(r => r.CodeProjet && r.Tache && r.Lien);
+  }
+
+  async function charger(){
+    let services;
+    if (CFG.dataUrl){
+      try{
+        const u = new URL(CFG.dataUrl);
+        u.searchParams.set("mode", planif ? "planificateur" : "public");
+        if (cle) u.searchParams.set("cle", cle);
+        const res = await fetch(u.toString(), { method:"GET" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        services = normalise(await res.json());
+      }catch(e){
+        console.warn("Lecture SharePoint impossible, utilisation de services.js", e);
+        services = normalise(window.SERVICES || []);
+        $("foot").textContent = "Liste SharePoint indisponible : affichage de la liste enregistrée sur le site.";
+      }
+    } else {
+      services = normalise(window.SERVICES || []);
+    }
+    if (!planif) services = services.filter(isPublic);
+    services.sort((a,b) => a.CodeProjet - b.CodeProjet || a.Ordre - b.Ordre || a.Tache.localeCompare(b.Tache,"fr"));
+
+    const meta = new Map((window.PROJETS||[]).map(p => [Number(p.CodeProjet), p]));
+    const codes = [...new Set(services.map(s => s.CodeProjet))];
+    state.projets = codes.map(c => ({
+      code:c,
+      nom:(meta.get(c)||{}).Projet || (services.find(s=>s.CodeProjet===c)||{}).Projet || ("Projet " + c),
+      desc:(meta.get(c)||{}).Description || "",
+      interne: services.filter(s=>s.CodeProjet===c).every(s=>!isPublic(s)),
+      n: services.filter(s=>s.CodeProjet===c).length
+    }));
+    state.services = services;
+    rendreProjets();
+  }
+
+  function rendreProjets(){
+    $("status").hidden = true;
+    if (!state.projets.length){
+      $("status").hidden = false;
+      $("status").textContent = "Aucun service disponible pour le moment.";
+      return;
+    }
+    $("step1").hidden = false;
+    const box = $("projets"); box.innerHTML = "";
+    state.projets.forEach(p => {
+      const b = document.createElement("button");
+      b.className = "proj"; b.type = "button";
+      b.style.setProperty("--pc", color(p.code));
+      b.setAttribute("aria-pressed","false");
+      b.dataset.code = p.code;
+      b.title = p.desc;
+      b.innerHTML = `<span class="code">${pad(p.code)}</span><span class="name"></span><span class="count">${p.n} tâche${p.n>1?"s":""}</span>` + (p.interne ? `<span class="tag">interne</span>` : "");
+      b.querySelector(".name").textContent = p.nom;
+      b.addEventListener("click", () => choisirProjet(p.code));
+      box.appendChild(b);
+    });
+    // Lien direct : ?projet=3
+    const pp = Number(params.get("projet"));
+    if (pp && state.projets.some(p=>p.code===pp)) choisirProjet(pp, false);
+  }
+
+  function choisirProjet(code, scroll=true){
+    state.projet = code; state.service = null;
+    document.querySelectorAll(".proj").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.code)===code)));
+    const p = state.projets.find(x=>x.code===code);
+    $("step2").hidden = false;
+    $("step2title").textContent = `Tâche — ${pad(code)} ${p.nom}`;
+    $("q").value = "";
+    rendreServices();
+    majBarre();
+    if (scroll) $("step2").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function rendreServices(){
+    const q = norm($("q").value.trim());
+    const box = $("services"); box.innerHTML = "";
+    const liste = state.services.filter(s => s.CodeProjet === state.projet && (!q || norm(s.Tache).includes(q)));
+    if (!liste.length){
+      box.innerHTML = `<div class="empty">Aucune tâche ne correspond.</div>`;
+      return;
+    }
+    liste.forEach((s,i) => {
+      const b = document.createElement("button");
+      b.className = "svc"; b.type = "button";
+      b.setAttribute("role","radio");
+      const on = state.service === s;
+      b.setAttribute("aria-checked", String(on));
+      b.tabIndex = (on || (!state.service && i===0)) ? 0 : -1;
+      b.style.setProperty("--pc", color(s.CodeProjet));
+      b.innerHTML = `<span class="radio" aria-hidden="true"></span><span class="t"></span>` + (isPublic(s) ? "" : `<span class="p">planif.</span>`);
+      b.querySelector(".t").textContent = s.Tache;
+      b.addEventListener("click", () => { state.service = s; rendreServices(); majBarre(); });
+      b.addEventListener("dblclick", reserver);
+      b.addEventListener("keydown", e => {
+        const all = [...box.querySelectorAll(".svc")]; const k = all.indexOf(b);
+        if (e.key==="ArrowDown"||e.key==="ArrowRight"){ e.preventDefault(); (all[k+1]||all[0]).focus(); }
+        if (e.key==="ArrowUp"||e.key==="ArrowLeft"){ e.preventDefault(); (all[k-1]||all[all.length-1]).focus(); }
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function majBarre(){
+    const s = state.service;
+    $("bar").classList.toggle("show", !!s);
+    if (s){
+      $("selProj").textContent = `${pad(s.CodeProjet)} ${s.Projet || (state.projets.find(p=>p.code===s.CodeProjet)||{}).nom || ""}`;
+      $("selTache").textContent = s.Tache;
+    }
+  }
+
+  function reserver(){
+    const s = state.service; if (!s) return;
+    if (CFG.nouvelOnglet){ const w = window.open(s.Lien, "_blank", "noopener"); if (!w) location.href = s.Lien; }
+    else location.href = s.Lien;
+  }
+
+  $("go").addEventListener("click", reserver);
+  $("q").addEventListener("input", rendreServices);
+  charger();
+})();
+</script>
+</body>
+</html>
