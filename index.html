@@ -17,6 +17,9 @@ window.CONFIG = {
   dataUrl: "",
   // Ouvrir Bookings dans un nouvel onglet (true) ou dans le même onglet (false)
   nouvelOnglet: true,
+  // Empreinte SHA-256 du mot de passe Administration (voir README pour la changer).
+  // Mot de passe actuel : Seneffe2026 — à changer avant de diffuser le site.
+  motDePasseHash: "d6efc5840efac99ded6663262445ad15549693fcb14525699078ab2d3429b715",
   // Nom affiché en haut de la page
   titre: "Réservation dépôt Seneffe"
 };
@@ -44,6 +47,7 @@ window.CONFIG = {
   --p1:#9f86ea; --p2:#7f8fe6; --p3:#f39a54; --p4:#3cc0c2; --p5:#5fb37f; --p6:#a8a49a; --p8:#c4927a; --p9:#93add0; --p10:#e2707d;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:120px}
 .wrap{max-width:980px;margin:0 auto;padding:0 16px}
@@ -95,6 +99,31 @@ h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
 .go:hover{filter:brightness(1.05)}
 .go:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .go svg{width:18px;height:18px}
+.home{padding:36px 0 8px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.choice{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);min-height:170px;transition:border-color .15s}
+.choice:hover{border-color:var(--accent)}
+.choice:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.choice .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--bg);color:var(--accent)}
+.choice .ic svg{width:24px;height:24px}
+.choice.main .ic{background:var(--accent);color:var(--accent-ink)}
+.choice b{font-size:20px;font-weight:600}
+.choice span{color:var(--muted);font-size:14px}
+.back{all:unset;cursor:pointer;color:var(--muted);font-size:14px;display:inline-flex;align-items:center;gap:6px;padding:6px 0;margin-top:18px}
+.back:hover{color:var(--ink)}
+.back:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.logout{all:unset;cursor:pointer;font-size:13px;color:var(--muted);text-decoration:underline;margin-left:8px}
+.logout:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+dialog{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--surface);color:var(--ink);width:min(380px,calc(100vw - 32px));box-shadow:0 20px 50px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(10,12,15,.45)}
+dialog h3{margin:0 0 6px;font-size:18px}
+dialog p{margin:0 0 14px;color:var(--muted);font-size:14px}
+dialog input{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+dialog input:focus{outline:3px solid var(--focus);outline-offset:1px}
+dialog .err{color:#c0392b;font-size:14px;min-height:20px;margin:8px 0 0}
+dialog .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.btn2{all:unset;cursor:pointer;padding:11px 16px;border-radius:10px;border:1.5px solid var(--line);font-weight:500}
+.btn2:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media (max-width:520px){.home{grid-template-columns:1fr}.choice{min-height:0}}
 footer{margin-top:40px;color:var(--muted);font-size:13px}
 .status{color:var(--muted);padding:24px 0}
 @media (max-width:520px){
@@ -112,13 +141,28 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   <div class="wrap">
     <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-ink)"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></div>
     <h1 id="titre">Réservation dépôt</h1>
-    <span class="badge-planif" id="badgePlanif" hidden>Mode planificateur</span>
+    <span class="badge-planif" id="badgePlanif" hidden>Administration</span><button class="logout" id="logout" type="button" hidden>Quitter</button>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="intro">
-    <p>Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong></p>
+  <section class="home" id="home" aria-label="Accueil">
+    <button class="choice main" id="btnResa" type="button">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14l2.5 2.5L16 12"/></svg></span>
+      <b>Réservation</b>
+      <span>Réserver une tâche du dépôt pour un projet.</span>
+    </button>
+    <button class="choice" id="btnAdmin" type="button">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+      <b>Administration</b>
+      <span>Accès planificateurs : tous les services. Mot de passe requis.</span>
+    </button>
+  </section>
+
+  <div id="resa" hidden>
+  <button class="back" id="back" type="button">← Accueil</button>
+  <section class="intro" style="padding-top:12px">
+    <p id="introTxt">Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong></p>
   </section>
 
   <div id="status" class="status" role="status">Chargement des services…</div>
@@ -133,11 +177,22 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     <div class="search"><input id="q" type="search" placeholder="Filtrer les tâches…" aria-label="Filtrer les tâches" autocomplete="off"></div>
     <div class="list" id="services" role="radiogroup" aria-labelledby="step2title"></div>
   </section>
+  </div>
 
   <footer class="wrap" style="padding:0">
     <p id="foot"></p>
   </footer>
 </main>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <form id="dlgForm" method="dialog">
+    <h3 id="dlgT">Administration</h3>
+    <p>Entrez le mot de passe pour accéder à tous les services.</p>
+    <input id="pwd" type="password" autocomplete="current-password" aria-label="Mot de passe" required>
+    <div class="err" id="pwdErr" role="alert"></div>
+    <div class="row"><button class="btn2" type="button" id="dlgCancel">Annuler</button><button class="go" type="submit" style="padding:11px 16px">Entrer</button></div>
+  </form>
+</dialog>
 
 <div class="bar" id="bar" aria-live="polite">
   <div class="wrap">
@@ -152,14 +207,62 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
 (function(){
   const CFG = window.CONFIG || {};
   const params = new URLSearchParams(location.search);
-  const planif = ["planificateur","planif"].includes((params.get("mode")||"").toLowerCase());
-  const cle = params.get("cle") || "";
   const $ = id => document.getElementById(id);
   const state = { projets:[], services:[], projet:null, service:null };
+  let planif = false, cle = "";
+  const SS = { get(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } },
+               set(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} },
+               del(k){ try{ sessionStorage.removeItem(k); }catch(e){} } };
 
   document.title = CFG.titre || document.title;
   $("titre").textContent = CFG.titre || "Réservation dépôt";
-  if (planif) $("badgePlanif").hidden = false;
+
+  async function sha256(t){
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+  }
+
+  function accueil(){
+    planif = false; cle = "";
+    state.projet = null; state.service = null;
+    $("home").hidden = false; $("resa").hidden = true;
+    $("badgePlanif").hidden = true; $("logout").hidden = true;
+    $("bar").classList.remove("show");
+    history.replaceState(null, "", location.pathname);
+    window.scrollTo(0,0);
+  }
+  function ouvrir(admin){
+    planif = admin;
+    $("home").hidden = true; $("resa").hidden = false;
+    $("badgePlanif").hidden = !admin; $("logout").hidden = !admin;
+    $("introTxt").innerHTML = admin
+      ? "Mode <strong>administration</strong> : tous les projets et tous les services, y compris internes."
+      : "Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong>";
+    $("step1").hidden = true; $("step2").hidden = true; $("status").hidden = false;
+    $("status").textContent = "Chargement des services…";
+    $("bar").classList.remove("show");
+    charger();
+  }
+  $("btnResa").addEventListener("click", () => ouvrir(false));
+  $("btnAdmin").addEventListener("click", () => {
+    const saved = SS.get("adminCle");
+    if (saved){ cle = saved; ouvrir(true); return; }
+    $("pwd").value = ""; $("pwdErr").textContent = "";
+    $("dlg").showModal(); $("pwd").focus();
+  });
+  $("dlgCancel").addEventListener("click", () => $("dlg").close());
+  $("dlgForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const v = $("pwd").value;
+    if (!v) return;
+    let ok = false;
+    try { ok = (await sha256(v)) === String(CFG.motDePasseHash||"").toLowerCase(); } catch(err){ ok = false; }
+    if (!ok){ $("pwdErr").textContent = "Mot de passe incorrect."; $("pwd").select(); return; }
+    cle = v; SS.set("adminCle", v);
+    $("dlg").close(); ouvrir(true);
+  });
+  $("back").addEventListener("click", () => { if (planif) { planif=false; } accueil(); });
+  $("logout").addEventListener("click", () => { SS.del("adminCle"); accueil(); });
 
   const pad = n => String(n).padStart(2,"0");
   const color = c => `var(--p${c}, var(--p6))`;
@@ -180,13 +283,15 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     })).filter(r => r.CodeProjet && r.Tache && r.Lien);
   }
 
+  let chargeId = 0;
   async function charger(){
+    const id = ++chargeId;
     let services;
     if (CFG.dataUrl){
       try{
         const u = new URL(CFG.dataUrl);
         u.searchParams.set("mode", planif ? "planificateur" : "public");
-        if (cle) u.searchParams.set("cle", cle);
+        if (planif && cle) u.searchParams.set("cle", cle);
         const res = await fetch(u.toString(), { method:"GET" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         services = normalise(await res.json());
@@ -198,6 +303,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     } else {
       services = normalise(window.SERVICES || []);
     }
+    if (id !== chargeId) return;
     if (!planif) services = services.filter(isPublic);
     services.sort((a,b) => a.CodeProjet - b.CodeProjet || a.Ordre - b.Ordre || a.Tache.localeCompare(b.Tache,"fr"));
 
@@ -221,7 +327,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
       $("status").textContent = "Aucun service disponible pour le moment.";
       return;
     }
-    $("step1").hidden = false;
+    $("step1").hidden = false; $("step2").hidden = true;
     const box = $("projets"); box.innerHTML = "";
     state.projets.forEach(p => {
       const b = document.createElement("button");
@@ -237,7 +343,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     });
     // Lien direct : ?projet=3
     const pp = Number(params.get("projet"));
-    if (pp && state.projets.some(p=>p.code===pp)) choisirProjet(pp, false);
+    if (pp && !planif && state.projets.some(p=>p.code===pp)) choisirProjet(pp, false);
   }
 
   function choisirProjet(code, scroll=true){
@@ -292,13 +398,19 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
 
   function reserver(){
     const s = state.service; if (!s) return;
-    if (CFG.nouvelOnglet){ const w = window.open(s.Lien, "_blank", "noopener"); if (!w) location.href = s.Lien; }
-    else location.href = s.Lien;
+    if (CFG.nouvelOnglet){
+      // Un seul onglet : le lien s'ouvre dans un nouvel onglet, la page reste en place
+      const a = document.createElement("a");
+      a.href = s.Lien; a.target = "_blank"; a.rel = "noopener noreferrer";
+      document.body.appendChild(a); a.click(); a.remove();
+    } else {
+      location.href = s.Lien;
+    }
   }
 
   $("go").addEventListener("click", reserver);
   $("q").addEventListener("input", rendreServices);
-  charger();
+  if (params.get("projet")) ouvrir(false);
 })();
 </script>
 </body>
