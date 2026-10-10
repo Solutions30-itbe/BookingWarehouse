@@ -53,12 +53,13 @@ window.CONFIG = {
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:120px}
 .wrap{max-width:980px;margin:0 auto;padding:0 16px}
-header{border-bottom:1px solid var(--line);background:var(--surface)}
+header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:5}
 header .wrap{display:flex;align-items:center;gap:12px;min-height:64px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
 .logo{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
 .logo svg{width:20px;height:20px}
 h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
-.badge-planif{margin-left:auto;font:600 12px/1 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;padding:7px 10px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent)}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.badge-planif{font:600 12px/1 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;padding:7px 10px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent)}
 .intro{padding:28px 0 8px}
 .intro p{margin:0;color:var(--muted);max-width:60ch}
 .intro strong{color:var(--ink)}
@@ -110,9 +111,19 @@ h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
 .choice.main .ic{background:var(--accent);color:var(--accent-ink)}
 .choice b{font-size:20px;font-weight:600}
 .choice span{color:var(--muted);font-size:14px}
-.back{all:unset;cursor:pointer;color:var(--muted);font-size:14px;display:inline-flex;align-items:center;gap:6px;padding:6px 0;margin-top:18px}
-.back:hover{color:var(--ink)}
-.back:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.back,.home-top{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-weight:600;border:1.5px solid var(--ink);color:var(--ink);background:var(--surface);border-radius:10px}
+.back{padding:11px 16px;margin-top:22px;font-size:15px}
+.home-top{padding:8px 12px;font-size:14px}
+.back svg,.home-top svg{width:18px;height:18px}
+.back:hover,.home-top:hover{background:var(--ink);color:var(--surface)}
+.back:focus-visible,.home-top:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.pick{position:relative;max-width:520px}
+.pick select{appearance:none;-webkit-appearance:none;width:100%;font:600 16px/1.3 "IBM Plex Sans",system-ui,sans-serif;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:15px 44px 15px 40px;box-shadow:var(--shadow);cursor:pointer}
+.pick select:hover{border-color:var(--pc,var(--accent))}
+.pick select:focus{outline:3px solid var(--focus);outline-offset:1px}
+.pick .dot{position:absolute;left:16px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:3px;background:var(--pc,var(--line));pointer-events:none}
+.pick .chev{position:absolute;right:16px;top:50%;width:18px;height:18px;margin-top:-9px;pointer-events:none;color:var(--muted)}
+.pick-desc{margin:8px 0 0;color:var(--muted);font-size:14px;min-height:20px}
 .logout{all:unset;cursor:pointer;font-size:13px;color:var(--muted);text-decoration:underline;margin-left:8px}
 .logout:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .who{font-size:13px;color:var(--muted);margin-left:10px;max-width:40vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -131,7 +142,7 @@ dialog .err{color:#c0392b;font-size:14px;min-height:20px;margin:8px 0 0}
 dialog .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
 .btn2{all:unset;cursor:pointer;padding:11px 16px;border-radius:10px;border:1.5px solid var(--line);font-weight:500}
 .btn2:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-@media (max-width:520px){.home{grid-template-columns:1fr}.choice{min-height:0}}
+@media (max-width:520px){.home{grid-template-columns:1fr}.choice{min-height:0}.who{display:none}.badge-planif{padding:6px 8px;font-size:11px}}
 footer{margin-top:40px;color:var(--muted);font-size:13px}
 .status{color:var(--muted);padding:24px 0}
 @media (max-width:520px){
@@ -149,7 +160,10 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   <div class="wrap">
     <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-ink)"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></div>
     <h1 id="titre">Réservation dépôt</h1>
-    <span class="badge-planif" id="badgePlanif" hidden>Administration</span><span class="who" id="who" hidden></span><button class="logout" id="logout" type="button" hidden>Déconnexion</button>
+    <div class="hdr-right">
+      <span class="badge-planif" id="badgePlanif" hidden>Administration</span><span class="who" id="who" hidden></span><button class="logout" id="logout" type="button" hidden>Déconnexion</button>
+      <button class="home-top" id="homeTop" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Accueil</button>
+    </div>
   </div>
 </header>
 
@@ -168,7 +182,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   </section>
 
   <div id="resa" hidden>
-  <button class="back" id="back" type="button">← Accueil</button>
+  <button class="back" id="back" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Retour à l'accueil</button>
   <section class="intro" style="padding-top:12px">
     <p id="introTxt">Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong></p>
   </section>
@@ -176,8 +190,13 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   <div id="status" class="status" role="status">Chargement des services…</div>
 
   <section class="step" id="step1" hidden>
-    <div class="step-h"><span class="step-n">01</span><h2>Projet</h2></div>
-    <div class="grid" id="projets" role="group" aria-label="Projets"></div>
+    <div class="step-h"><span class="step-n">01</span><h2><label for="selProjet">Projet</label></h2></div>
+    <div class="pick" id="pick">
+      <span class="dot" aria-hidden="true"></span>
+      <select id="selProjet"></select>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <p class="pick-desc" id="pickDesc"></p>
   </section>
 
   <section class="step" id="step2" hidden>
@@ -254,7 +273,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     planif = false;
     state.projet = null; state.service = null;
     $("home").hidden = false; $("resa").hidden = true;
-    $("badgePlanif").hidden = true; $("logout").hidden = true; $("who").hidden = true;
+    $("badgePlanif").hidden = true; $("logout").hidden = true; $("who").hidden = true; $("homeTop").hidden = true;
     $("bar").classList.remove("show");
     history.replaceState(null, "", location.pathname);
     window.scrollTo(0,0);
@@ -262,7 +281,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   function ouvrir(admin){
     planif = admin;
     $("home").hidden = true; $("resa").hidden = false;
-    $("badgePlanif").hidden = !admin; $("logout").hidden = !admin;
+    $("badgePlanif").hidden = !admin; $("logout").hidden = !admin; $("homeTop").hidden = false;
     const ses = session();
     $("who").hidden = !(admin && ses); $("who").textContent = ses ? (ses.fullName || ses.perid) : "";
     $("introTxt").innerHTML = admin
@@ -364,19 +383,15 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
       return;
     }
     $("step1").hidden = false; $("step2").hidden = true;
-    const box = $("projets"); box.innerHTML = "";
+    const sel = $("selProjet"); sel.innerHTML = "";
+    const o0 = document.createElement("option"); o0.value = ""; o0.textContent = "— Choisissez un projet —"; sel.appendChild(o0);
     state.projets.forEach(p => {
-      const b = document.createElement("button");
-      b.className = "proj"; b.type = "button";
-      b.style.setProperty("--pc", color(p.code));
-      b.setAttribute("aria-pressed","false");
-      b.dataset.code = p.code;
-      b.title = p.desc;
-      b.innerHTML = `<span class="code">${pad(p.code)}</span><span class="name"></span><span class="count">${p.n} tâche${p.n>1?"s":""}</span>` + (p.interne ? `<span class="tag">interne</span>` : "");
-      b.querySelector(".name").textContent = p.nom;
-      b.addEventListener("click", () => choisirProjet(p.code));
-      box.appendChild(b);
+      const o = document.createElement("option");
+      o.value = p.code;
+      o.textContent = `${pad(p.code)} · ${p.nom}  (${p.n})`;
+      sel.appendChild(o);
     });
+    sel.value = ""; $("pick").style.removeProperty("--pc"); $("pickDesc").textContent = "";
     // Lien direct : ?projet=3
     const pp = Number(params.get("projet"));
     if (pp && !planif && state.projets.some(p=>p.code===pp)) choisirProjet(pp, false);
@@ -384,14 +399,16 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
 
   function choisirProjet(code, scroll=true){
     state.projet = code; state.service = null;
-    document.querySelectorAll(".proj").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.code)===code)));
     const p = state.projets.find(x=>x.code===code);
+    $("selProjet").value = String(code);
+    $("pick").style.setProperty("--pc", color(code));
+    $("pickDesc").textContent = p.desc || "";
     $("step2").hidden = false;
     $("step2title").textContent = `Tâche — ${pad(code)} ${p.nom}`;
     $("q").value = "";
     rendreServices();
     majBarre();
-    if (scroll) $("step2").scrollIntoView({behavior:"smooth", block:"start"});
+
   }
 
   function rendreServices(){
@@ -446,6 +463,12 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
 
   $("go").addEventListener("click", reserver);
   $("q").addEventListener("input", rendreServices);
+  $("selProjet").addEventListener("change", e => {
+    const v = Number(e.target.value);
+    if (!v){ state.projet = null; state.service = null; $("step2").hidden = true; $("pick").style.removeProperty("--pc"); $("pickDesc").textContent = ""; majBarre(); return; }
+    choisirProjet(v);
+  });
+  $("homeTop").addEventListener("click", () => accueil());
   if (params.get("projet")) ouvrir(false);
 })();
 </script>
