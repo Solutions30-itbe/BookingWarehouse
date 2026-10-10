@@ -17,9 +17,11 @@ window.CONFIG = {
   dataUrl: "",
   // Ouvrir Bookings dans un nouvel onglet (true) ou dans le même onglet (false)
   nouvelOnglet: true,
-  // Empreinte SHA-256 du mot de passe Administration (voir README pour la changer).
-  // Mot de passe actuel : Seneffe2026 — à changer avant de diffuser le site.
-  motDePasseHash: "d6efc5840efac99ded6663262445ad15549693fcb14525699078ab2d3429b715",
+  // Flux Power Automate qui vérifie PERID + mot de passe (POST {perid, password}).
+  // Réponse attendue : {valid:true/false, accessLevel:"full"|"technicien", perid, fullName}
+  authUrl: "https://default2fe73b7aa63e4370a1eb1915e8da07.55.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/11/workflows/271be99d34914a1f82f68ca8bd082fd8/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=F7Dh5zCuhOd_a6xYfV8f4JGNg_OO8djIF7EPwSqMSA0",
+  // Niveau d'accès exigé pour l'Administration (comparaison sans tenir compte des majuscules)
+  niveauAdmin: "full",
   // Nom affiché en haut de la page
   titre: "Réservation dépôt Seneffe"
 };
@@ -113,6 +115,12 @@ h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
 .back:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
 .logout{all:unset;cursor:pointer;font-size:13px;color:var(--muted);text-decoration:underline;margin-left:8px}
 .logout:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.who{font-size:13px;color:var(--muted);margin-left:10px;max-width:40vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+dialog label{display:block;font-size:13px;font-weight:500;margin:10px 0 4px}
+.go[disabled]{opacity:.6;cursor:wait}
+.spin{width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sp .8s linear infinite;display:none}
+.busy .spin{display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
 dialog{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--surface);color:var(--ink);width:min(380px,calc(100vw - 32px));box-shadow:0 20px 50px rgba(0,0,0,.25)}
 dialog::backdrop{background:rgba(10,12,15,.45)}
 dialog h3{margin:0 0 6px;font-size:18px}
@@ -141,7 +149,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   <div class="wrap">
     <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-ink)"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/></svg></div>
     <h1 id="titre">Réservation dépôt</h1>
-    <span class="badge-planif" id="badgePlanif" hidden>Administration</span><button class="logout" id="logout" type="button" hidden>Quitter</button>
+    <span class="badge-planif" id="badgePlanif" hidden>Administration</span><span class="who" id="who" hidden></span><button class="logout" id="logout" type="button" hidden>Déconnexion</button>
   </div>
 </header>
 
@@ -155,7 +163,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     <button class="choice" id="btnAdmin" type="button">
       <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
       <b>Administration</b>
-      <span>Accès planificateurs : tous les services. Mot de passe requis.</span>
+      <span>Accès planificateurs : tous les services. Connexion PERID requise.</span>
     </button>
   </section>
 
@@ -187,10 +195,13 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
 <dialog id="dlg" aria-labelledby="dlgT">
   <form id="dlgForm" method="dialog">
     <h3 id="dlgT">Administration</h3>
-    <p>Entrez le mot de passe pour accéder à tous les services.</p>
-    <input id="pwd" type="password" autocomplete="current-password" aria-label="Mot de passe" required>
+    <p>Connectez-vous avec votre PERID et votre mot de passe.</p>
+    <label for="perid">PERID</label>
+    <input id="perid" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+    <label for="pwd">Mot de passe</label>
+    <input id="pwd" type="password" autocomplete="current-password" required>
     <div class="err" id="pwdErr" role="alert"></div>
-    <div class="row"><button class="btn2" type="button" id="dlgCancel">Annuler</button><button class="go" type="submit" style="padding:11px 16px">Entrer</button></div>
+    <div class="row"><button class="btn2" type="button" id="dlgCancel">Annuler</button><button class="go" type="submit" id="btnLogin" style="padding:11px 16px"><span class="spin" aria-hidden="true"></span><span id="btnLoginTxt">Se connecter</span></button></div>
   </form>
 </dialog>
 
@@ -209,7 +220,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   const params = new URLSearchParams(location.search);
   const $ = id => document.getElementById(id);
   const state = { projets:[], services:[], projet:null, service:null };
-  let planif = false, cle = "";
+  let planif = false;
   const SS = { get(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } },
                set(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} },
                del(k){ try{ sessionStorage.removeItem(k); }catch(e){} } };
@@ -217,16 +228,33 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   document.title = CFG.titre || document.title;
   $("titre").textContent = CFG.titre || "Réservation dépôt";
 
-  async function sha256(t){
-    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
-    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+  function session(){ try{ return JSON.parse(SS.get("adminSession")||"null"); }catch(e){ return null; } }
+
+  async function verifier(perid, password){
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 45000);
+    try{
+      const res = await fetch(CFG.authUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ perid, password }),
+        signal: ctrl.signal
+      });
+      if (res.status === 401 || res.status === 403) return { erreur: "Le service de connexion refuse l'appel (accès du flux). Contactez l'administrateur du site." };
+      if (!res.ok) return { erreur: "Le service de connexion a répondu une erreur (" + res.status + "). Réessayez dans un instant." };
+      return await res.json();
+    }catch(e){
+      return { erreur: e.name === "AbortError"
+        ? "Le service de connexion ne répond pas. Réessayez dans un instant."
+        : "Impossible de joindre le service de connexion. Vérifiez votre connexion internet." };
+    }finally{ clearTimeout(t); }
   }
 
   function accueil(){
-    planif = false; cle = "";
+    planif = false;
     state.projet = null; state.service = null;
     $("home").hidden = false; $("resa").hidden = true;
-    $("badgePlanif").hidden = true; $("logout").hidden = true;
+    $("badgePlanif").hidden = true; $("logout").hidden = true; $("who").hidden = true;
     $("bar").classList.remove("show");
     history.replaceState(null, "", location.pathname);
     window.scrollTo(0,0);
@@ -235,6 +263,8 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
     planif = admin;
     $("home").hidden = true; $("resa").hidden = false;
     $("badgePlanif").hidden = !admin; $("logout").hidden = !admin;
+    const ses = session();
+    $("who").hidden = !(admin && ses); $("who").textContent = ses ? (ses.fullName || ses.perid) : "";
     $("introTxt").innerHTML = admin
       ? "Mode <strong>administration</strong> : tous les projets et tous les services, y compris internes."
       : "Choisissez le <strong>projet</strong>, puis la <strong>tâche</strong> à réserver. Vous serez redirigé vers le bon formulaire de réservation. <strong>Aucun montant ne vous sera facturé.</strong>";
@@ -245,24 +275,31 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
   }
   $("btnResa").addEventListener("click", () => ouvrir(false));
   $("btnAdmin").addEventListener("click", () => {
-    const saved = SS.get("adminCle");
-    if (saved){ cle = saved; ouvrir(true); return; }
+    if (session()){ ouvrir(true); return; }
     $("pwd").value = ""; $("pwdErr").textContent = "";
-    $("dlg").showModal(); $("pwd").focus();
+    $("dlg").showModal(); $("perid").focus();
   });
   $("dlgCancel").addEventListener("click", () => $("dlg").close());
   $("dlgForm").addEventListener("submit", async e => {
     e.preventDefault();
-    const v = $("pwd").value;
-    if (!v) return;
-    let ok = false;
-    try { ok = (await sha256(v)) === String(CFG.motDePasseHash||"").toLowerCase(); } catch(err){ ok = false; }
-    if (!ok){ $("pwdErr").textContent = "Mot de passe incorrect."; $("pwd").select(); return; }
-    cle = v; SS.set("adminCle", v);
+    const perid = $("perid").value.trim(), pwd = $("pwd").value;
+    if (!perid || !pwd) return;
+    const btn = $("btnLogin");
+    btn.disabled = true; btn.classList.add("busy"); $("btnLoginTxt").textContent = "Vérification…"; $("pwdErr").textContent = "";
+    const r = await verifier(perid, pwd);
+    btn.disabled = false; btn.classList.remove("busy"); $("btnLoginTxt").textContent = "Se connecter";
+    if (r.erreur){ $("pwdErr").textContent = r.erreur; return; }
+    const valid = r.valid === true || String(r.valid).toLowerCase() === "true";
+    if (!valid){ $("pwdErr").textContent = "PERID ou mot de passe incorrect."; $("pwd").value = ""; $("pwd").focus(); return; }
+    if (String(r.accessLevel||"").trim().toLowerCase() !== String(CFG.niveauAdmin||"full").toLowerCase()){
+      $("pwdErr").textContent = "Accès refusé : votre profil n'a pas les droits Administration."; $("pwd").value = ""; return;
+    }
+    SS.set("adminSession", JSON.stringify({ perid: r.perid || perid, fullName: r.fullName || "" }));
+    $("pwd").value = "";
     $("dlg").close(); ouvrir(true);
   });
   $("back").addEventListener("click", () => { if (planif) { planif=false; } accueil(); });
-  $("logout").addEventListener("click", () => { SS.del("adminCle"); accueil(); });
+  $("logout").addEventListener("click", () => { SS.del("adminSession"); accueil(); });
 
   const pad = n => String(n).padStart(2,"0");
   const color = c => `var(--p${c}, var(--p6))`;
@@ -291,7 +328,6 @@ footer{margin-top:40px;color:var(--muted);font-size:13px}
       try{
         const u = new URL(CFG.dataUrl);
         u.searchParams.set("mode", planif ? "planificateur" : "public");
-        if (planif && cle) u.searchParams.set("cle", cle);
         const res = await fetch(u.toString(), { method:"GET" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         services = normalise(await res.json());
