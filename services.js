@@ -1,4 +1,4 @@
-// Données des services — générées depuis Booking_Services_Nomenclature.xlsx
+// Données des services — générées depuis Services_Bookings_SharePoint.xlsx
 // Pour modifier : changez une ligne ci-dessous, ou branchez la liste SharePoint (voir README).
 // Public : "Oui" = visible par tous · "Non" = planificateurs uniquement
 window.PROJETS = [
@@ -55,7 +55,7 @@ window.SERVICES = [
     "CodeProjet": 1,
     "Projet": "PROXIMUS OST",
     "Tache": "Aménagement du stock",
-    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/wxsNOGN8iUOk0n83iHzNeA2?ismsaljsauthenabled",
+    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/_i2walzlCUiSOcC5Ns06og2?ismsaljsauthenabled",
     "Public": "Oui",
     "Ordre": 1
   },
@@ -100,7 +100,7 @@ window.SERVICES = [
     "CodeProjet": 1,
     "Projet": "PROXIMUS OST",
     "Tache": "Contrôle outils stock",
-    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/_z04zkWc_0-VudYzm-LdOg2?ismsaljsauthenabled",
+    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/4Zp8BwMnE0qWVj3Omu34Ow2?ismsaljsauthenabled",
     "Public": "Oui",
     "Ordre": 6
   },
@@ -262,7 +262,7 @@ window.SERVICES = [
     "CodeProjet": 2,
     "Projet": "PROXIMUS ACN",
     "Tache": "Contrôle outils stock",
-    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/g2p3IEs_CkOZJZVTaQ7PXw2?ismsaljsauthenabled",
+    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/Qi6qSiJuIUK3yP-4puTR_g2?ismsaljsauthenabled",
     "Public": "Oui",
     "Ordre": 24
   },
@@ -397,7 +397,7 @@ window.SERVICES = [
     "CodeProjet": 2,
     "Projet": "PROXIMUS ACN",
     "Tache": "Réintégration matériel BOM STOP",
-    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/Cz-meJrGJ0-qdPP-x3Cu2g2?ismsaljsauthenabled",
+    "Lien": "https://bookings.cloud.microsoft/book/ReservationWharehouseSeneffe@solutions30.com/s/UbuAtUgtIU6dO_-0rIkJxA2?ismsaljsauthenabled",
     "Public": "Oui",
     "Ordre": 39
   },
